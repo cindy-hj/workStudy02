@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.model.Category;
 import com.example.model.Product;
 import com.example.service.ProductService;
 
@@ -24,11 +25,16 @@ public class ProductController {
 		String productName = params.get("productName");
 		String productPrice = params.get("productPrice");
 		String imgPath = params.get("imgPath");
-		
+		String id = params.get("id");
+				
 		Product addproduct = new Product();
 		addproduct.setProductName(productName);
 		addproduct.setProductPrice(Integer.parseInt(productPrice));
 		addproduct.setImgPath(imgPath);
+		
+		Category addCategory = new Category();
+		addCategory.setCategoryId(Integer.parseInt(id));
+		addproduct.setCategory(addCategory);
 		
 		Product rProduct = productService.save(addproduct);
 		return new ResponseEntity<>(rProduct, HttpStatus.OK);
