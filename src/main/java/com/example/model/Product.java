@@ -43,4 +43,10 @@ public class Product {
 	@OneToMany(mappedBy = "products", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private List<OrderDetail> orderDetails;
+	
+	public void update(int productId, String productName, int productPrice, String imgPath) {
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.imgPath = imgPath;
+	}
 }

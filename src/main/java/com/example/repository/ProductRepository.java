@@ -6,4 +6,8 @@ import com.example.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
+	Product findByProductId(int productId);
+
+	void deleteByProductId(Integer id);
+
 }

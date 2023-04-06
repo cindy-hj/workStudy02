@@ -38,4 +38,12 @@ public class User {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Order> orders;
+	
+	public void update(String userId, String userPw, String userName, String address, String phone, String tel) {
+		this.userPw = userPw;
+		this.userName = userName;
+		this.address = address;
+		this.phone = phone;
+		this.tel = tel;
+	}
 }
