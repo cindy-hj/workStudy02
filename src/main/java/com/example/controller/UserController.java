@@ -1,10 +1,12 @@
 package com.example.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,7 +54,7 @@ public class UserController {
 		if(rUser == null) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 		}
-		return new ResponseEntity(rUser, HttpStatus.OK);
+		return new ResponseEntity<>(rUser, HttpStatus.OK);
 	}
 	
 	@PutMapping("/api/modified/user")
@@ -67,6 +69,13 @@ public class UserController {
 		User rUser = userService.update(userId, userPw, userName, address, phone, tel);
 		
 		return new ResponseEntity<>(rUser, HttpStatus.OK);
+	}
+	
+	@GetMapping("/api/list/user")
+	public ResponseEntity listUsers() {
+		List<User> users = userService.findAll();
+		
+		return new ResponseEntity<>(users, HttpStatus.OK);
 	}
 	
 }
